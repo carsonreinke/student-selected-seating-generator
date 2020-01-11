@@ -1,5 +1,5 @@
-import Room from '@/room';
-import RandomStrategy from '@/random-strategy';
+import Room from '@/models/room';
+import RandomStrategy from '@/models/random-strategy';
 
 test('constructor', () => {
     const obj = new Room();
@@ -38,5 +38,5 @@ test('findStudentDesk multiple', () => {
     d1.student = room.addStudent();
     d2.student = room.addStudent();
 
-    expect(room.findStudentDesk(d2.student)).toEqual(d1);
+    expect(room.findStudentDesk(d2.student)).toEqual(d2);
 });

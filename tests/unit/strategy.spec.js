@@ -1,6 +1,5 @@
-import Strategy from '@/strategy';
-import Room from '@/room';
-import { exportAllDeclaration } from '@babel/types';
+import Strategy from '@/models/strategy';
+import Room from '@/models/room';
 
 test('distance', () => {
     const room = new Room();

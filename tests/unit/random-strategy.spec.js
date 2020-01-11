@@ -1,5 +1,5 @@
-import RandomStrategy from '@/random-strategy';
-import Room from '@/room';
+import RandomStrategy from '@/models/random-strategy';
+import Room from '@/models/room';
 
 test('constructor', () => {
     const strat = new RandomStrategy();

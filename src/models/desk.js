@@ -1,7 +1,10 @@
 import Position from './position';
 
+let nextId = 1;
+
 export default class Desk {
     constructor() {
+        this.id = nextId++;
         this.student = null;
         this.position = new Position();
     }

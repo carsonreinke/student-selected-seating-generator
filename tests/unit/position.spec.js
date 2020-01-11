@@ -1,4 +1,4 @@
-import Position from '@/position';
+import Position from '@/models/position';
 
 test('constructor', () => {
     const obj = new Position();

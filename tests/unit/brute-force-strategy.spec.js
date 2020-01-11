@@ -1,5 +1,5 @@
-import BruteForceStrategy from '@/brute-force-strategy';
-import Room from '@/room';
+import BruteForceStrategy from '@/models/brute-force-strategy';
+import Room from '@/models/room';
 
 test('constructor', () => {
     const strat = new BruteForceStrategy();

@@ -1,5 +1,8 @@
+let nextId = 1;
+
 export default class Student {
     constructor() {
+        this.id = nextId++;
         this.name = null;
         this.preferences = [];
     }

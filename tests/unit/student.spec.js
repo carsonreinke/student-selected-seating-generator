@@ -1,8 +1,12 @@
-import Student from '@/student';
+import Student from '@/models/student';
 
 test('constructor', () => {
     const obj = new Student();
     expect(obj).not.toBeNull();
+});
+
+test('unique id', () => {
+    expect(new Student().id).not.toEqual(new Student().id);
 });
 
 test('name', () => {

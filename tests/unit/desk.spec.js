@@ -1,9 +1,13 @@
-import Desk from '@/desk';
-import Student from '@/student';
+import Desk from '@/models/desk';
+import Student from '@/models/student';
 
 test('constructor', () => {
     const obj = new Desk();
     expect(obj).not.toBeNull();
+});
+
+test('unique id', () => {
+    expect(new Desk().id).not.toEqual(new Desk().id);
 });
 
 test('student', () => {
