@@ -11,8 +11,3 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app');
-
-//TODO
-store.commit('addDesk');
-store.commit('addDesk');
-store.commit('addDesk');

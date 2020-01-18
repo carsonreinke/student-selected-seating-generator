@@ -18,6 +18,14 @@ export default class Room {
     }
 
     /**
+     * 
+     * @param Desk desk 
+     */
+    removeDesk(desk) {
+        this.desks = this.desks.filter(value => value.id !== desk.id);
+    }
+
+    /**
      * @returns Student
      */
     addStudent() {

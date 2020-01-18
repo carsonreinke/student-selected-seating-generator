@@ -5,6 +5,7 @@
     @dragend="onDragEnd" @touchend="onDragEnd">
         <img alt="Desk" src="../assets/desk.svg">
         Desk
+        <button @click="removeDesk(desk)">Delete</button>
     </div>
 </template>
 
@@ -20,16 +21,40 @@ export default {
         };
     },
     methods: {
-        ...mapActions(['moveDesk']),
+        ...mapActions(['moveDesk', 'removeDesk']),
         onDragStart(event) {
             this.initialPosition = {x: event.clientX, y: event.clientY};
         },
         onDragEnd(event) {
             const { desk } = this;
+            const element = event.target;
 
             //Calculate new position
-            const x = event.clientX - this.initialPosition.x + event.target.offsetLeft,
-                y = event.clientY - this.initialPosition.y + event.target.offsetTop;
+            let x = event.clientX - this.initialPosition.x + element.offsetLeft,
+                y = event.clientY - this.initialPosition.y + element.offsetTop;
+            
+            //Ensure position not too far left/top
+            if(x < 0) {
+                x = 0;
+            }
+            if(y < 0) {
+                y = 0;
+            }
+
+            //Ensure position not too far bottom/right
+            const parentElement = element.parentElement;
+            if(parentElement) {
+                const parentRect = parentElement.getBoundingClientRect(),
+                    elementRect = element.getBoundingClientRect();
+
+                if(x > parentRect.width - elementRect.width) {
+                    x = parentRect.width - elementRect.width;
+                }
+                if(y > parentRect.height - elementRect.height) {
+                    y = parentRect.height - elementRect.height;
+                }
+            }
+
             this.moveDesk({ desk, x, y });
         }
     }
@@ -39,13 +64,20 @@ export default {
 <style scoped>
     .desk {
         position: absolute;
+        padding: 0.5rem;
+        border: 1px solid black;
+        background: white;
     }
 
     .desk > img {
-        width: 5em;
+        width: 5rem;
     }
 
     .desk * {
         pointer-events: none;
+    }
+
+    .desk > button {
+        pointer-events: auto;
     }
 </style>

@@ -9,15 +9,26 @@ export default {
         allDesks: (state) => state.room.desks
     },
     actions: {
+        addDesk: ({ commit }) => {
+            commit('ADD_DESK');
+        },
         moveDesk: ({ commit }, { desk, x, y } ) => {
-            commit('editDeskPosition', { desk, x, y });
+            commit('EDIT_DESK_POSITION', { desk, x, y });
+        },
+        removeDesk: ({ commit }, desk) => {
+            commit('REMOVE_DESK', desk);
         },
     },
     mutations: {
-        addDesk: (state) => state.room.addDesk(),
-        editDeskPosition: (state, { desk, x, y }) => {
+        ADD_DESK: (state) => {
+            state.room.addDesk();
+        },
+        EDIT_DESK_POSITION: (state, { desk, x, y }) => {
             desk.position.x = x;
             desk.position.y = y;
+        },
+        REMOVE_DESK: (state, desk) => {
+            state.room.removeDesk(desk);
         },
     }
 }

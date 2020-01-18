@@ -19,6 +19,11 @@ export default {
 
 <style scoped>
     #room {
-        position: relative;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: calc(100% - 3rem);
+        height: 100%;
+        margin-left: 3rem;
     }
 </style>
