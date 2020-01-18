@@ -4,7 +4,7 @@
     @dragstart="onDragStart" @touchstart="onDragStart"
     @dragend="onDragEnd" @touchend="onDragEnd">
         <img alt="Desk" src="../assets/desk.svg">
-        Desk
+        <div class="name">{{ name() }}</div>
         <button @click="removeDesk(desk)">Delete</button>
     </div>
 </template>
@@ -22,6 +22,10 @@ export default {
     },
     methods: {
         ...mapActions(['moveDesk', 'removeDesk']),
+        name() {
+            const { desk } = this;
+            return desk.student === null ? 'Desk' : desk.student.name;
+        },
         onDragStart(event) {
             this.initialPosition = {x: event.clientX, y: event.clientY};
         },
