@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import room from '@/store/modules/room';
+import Room from '@/models/room';
 
 Vue.use(Vuex);
 
@@ -8,12 +8,33 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    room: new Room()
   },
-  mutations: {
+  getters: {
+    allDesks: (state) => state.room.desks,
+    deskCount: (state) => state.room.desks.length,
   },
   actions: {
+    addDesk: ({ commit }) => {
+      commit('ADD_DESK');
+    },
+    moveDesk: ({ commit }, { desk, x, y }) => {
+      commit('EDIT_DESK_POSITION', { desk, x, y });
+    },
+    removeDesk: ({ commit }, desk) => {
+      commit('REMOVE_DESK', desk);
+    },
   },
-  modules: {
-    room
+  mutations: {
+    ADD_DESK: (state) => {
+      state.room.addDesk();
+    },
+    EDIT_DESK_POSITION: (state, { desk, x, y }) => {
+      desk.position.x = x;
+      desk.position.y = y;
+    },
+    REMOVE_DESK: (state, desk) => {
+      state.room.removeDesk(desk);
+    },
   }
 });

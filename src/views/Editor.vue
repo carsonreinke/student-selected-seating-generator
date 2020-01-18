@@ -14,6 +14,7 @@
 <script>
 import Room from "@/components/Room";
 import { mapActions } from "vuex";
+const INITIAL_DESKS = 6;
 
 export default {
   name: "editor",
@@ -23,12 +24,12 @@ export default {
   methods: {
     ...mapActions(["addDesk"]),
     initial() {
-      if(this.$store.getters.allDesks.length > 0) {
+      if(this.$store.getters.deskCount > 0) {
         return;
       }
 
       Promise.all(
-        [...Array(6)].map(() => {
+        [...Array(INITIAL_DESKS)].map(() => {
           return this.$store.dispatch('addDesk');
         })
       ).then(this.arrange);
@@ -50,12 +51,12 @@ export default {
       //Calculate number of columns/rows
       const maxColumns = Math.floor(containerRect.width / deskRect.width),
         maxRows = Math.floor(containerRect.height / deskRect.height);
-      if(maxColumns * maxRows < this.$store.getters.allDesks.length) {
+      if(maxColumns * maxRows < this.$store.getters.deskCount) {
         throw new Exception('Too many desks to arrange');
       }
       //Change columns/rows to match the number of items
       const columns = maxColumns,
-        rows = Math.ceil(this.$store.getters.allDesks.length / maxColumns);
+        rows = Math.ceil(this.$store.getters.deskCount / maxColumns);
 
       //Calculate column/row size and center position
       const width = containerRect.width / columns,
