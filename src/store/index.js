@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import Room from '@/models/room';
+import BruteForceStrategy from '@/models/brute-force-strategy';
 
 Vue.use(Vuex);
 
@@ -8,11 +9,12 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    room: new Room()
+    room: new Room(new BruteForceStrategy())
   },
   getters: {
     allDesks: (state) => state.room.desks,
     deskCount: (state) => state.room.desks.length,
+    isEmpty: (state) => state.room.desks.length === 0,
   },
   actions: {
     addDesk: ({ commit }) => {
@@ -23,6 +25,9 @@ export default new Vuex.Store({
     },
     removeDesk: ({ commit }, desk) => {
       commit('REMOVE_DESK', desk);
+    },
+    arrange: ({ commit }) => {
+      commit('ARRANGE');
     },
   },
   mutations: {
@@ -35,6 +40,9 @@ export default new Vuex.Store({
     },
     REMOVE_DESK: (state, desk) => {
       state.room.removeDesk(desk);
+    },
+    ARRANGE: (state) => {
+      state.room.arrange();
     },
   }
 });

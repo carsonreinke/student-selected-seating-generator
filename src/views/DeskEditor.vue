@@ -3,10 +3,10 @@
     <nav>
       <button @click="addDesk">Add Desk</button>
       <button @click="arrange">Arrange</button>
-      <router-link to="/about">About</router-link>
+      <button @click="next">Next</button>
     </nav>
     <main>
-      <Room />
+      <Room editable />
     </main>
   </div>
 </template>
@@ -17,7 +17,7 @@ import { mapActions } from "vuex";
 const INITIAL_DESKS = 6;
 
 export default {
-  name: "editor",
+  name: "desk-editor",
   components: {
     Room
   },
@@ -55,8 +55,17 @@ export default {
         throw new Exception('Too many desks to arrange');
       }
       //Change columns/rows to match the number of items
-      const columns = maxColumns,
-        rows = Math.ceil(this.$store.getters.deskCount / maxColumns);
+      const columns = Math.floor((maxColumns / (maxColumns + maxRows)) * this.$store.getters.deskCount);
+      const rows = Math.ceil((maxRows / (maxColumns + maxRows)) * this.$store.getters.deskCount)
+      
+      /*let columns = 1, rows = 1;
+      while(columns * rows < this.$store.getters.deskCount) {
+        columns++;
+        rows++;
+      }*/
+
+      //const columns = maxColumns,
+      //  rows = Math.ceil(this.$store.getters.deskCount / maxColumns);
 
       //Calculate column/row size and center position
       const width = containerRect.width / columns,
@@ -75,7 +84,10 @@ export default {
           y: (row * height) + top
         });
       });
-    }
+    },
+    next() {
+      this.$router.push('students');
+    },
   },
   created() {
     this.initial();

@@ -1,5 +1,11 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <main>
+    <router-link to="desks">Get Started</router-link>
+  </main>
 </template>
+
+<script>
+export default {
+  
+}
+</script>

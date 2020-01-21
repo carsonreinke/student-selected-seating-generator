@@ -1,22 +1,32 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Editor from '../views/Editor.vue'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import About from '../views/About.vue'
+import DeskEditor from '../views/DeskEditor.vue';
+import StudentEditor from '../views/StudentEditor.vue';
+import ReportViewer from '../views/ReportViewer.vue';
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'editor',
-    component: Editor
+    name: 'about',
+    component: About
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/desks',
+    name: 'desk-editor',
+    component: DeskEditor
+  },
+  {
+    path: '/students',
+    name: 'student-editor',
+    component: StudentEditor
+  },
+  {
+    path: '/report',
+    name: 'report-viewer',
+    component: ReportViewer
   }
 ]
 
