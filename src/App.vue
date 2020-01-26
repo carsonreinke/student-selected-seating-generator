@@ -22,4 +22,20 @@
   main {
     margin-left: 3em;
   }
+
+  @media print {
+    @page {
+      size: landscape;
+      /*margin: 0;
+      padding: 0;*/
+    }
+
+    nav {
+      display: none;
+    }
+
+    main {
+      margin-left: initial;
+    }
+  }
 </style>

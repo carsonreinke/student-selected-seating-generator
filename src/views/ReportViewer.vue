@@ -24,7 +24,7 @@ export default {
       this.$router.push("students");
     },
     print() {
-      //TODO
+      window.print();
     },
     save() {
       //TODO
