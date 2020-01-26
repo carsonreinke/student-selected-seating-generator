@@ -18,4 +18,8 @@
 
     background-color: gray;
   }
+
+  main {
+    margin-left: 3em;
+  }
 </style>

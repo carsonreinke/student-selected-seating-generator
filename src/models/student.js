@@ -15,4 +15,12 @@ export default class Student {
     addPreference(student) {
         this.preferences.push(student);
     }
+
+    /**
+     * 
+     * @param Student student 
+     */
+    removePreference(student) {
+        this.preferences = this.preferences.filter(st => st !== student);
+    }
 }

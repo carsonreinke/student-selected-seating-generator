@@ -16,3 +16,20 @@ test('name', () => {
 
     expect(obj.name).toEqual(name);
 });
+
+test('addPreference', () => {
+    const s1 = new Student(),
+        s2 = new Student();
+
+    s1.addPreference(s2);
+    expect(s1.preferences).toContain(s2);
+});
+
+test('removePreference', () => {
+    const s1 = new Student(),
+        s2 = new Student();
+
+    s1.addPreference(s2);
+    s1.removePreference(s2);
+    expect(s1.preferences).not.toContain(s2);
+});
