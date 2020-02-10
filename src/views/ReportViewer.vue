@@ -27,12 +27,12 @@ export default {
       window.print();
     },
     save() {
-      //TODO
+      this.$store.dispatch("saveVersion", new Date());
     }
   },
   created() {
     if (this.$store.getters.isEmpty) {
-      this.$router.push("desks");
+      this.$router.push("/");
     }
 
     this.$store.dispatch("arrange");

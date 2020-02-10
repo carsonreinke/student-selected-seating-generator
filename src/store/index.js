@@ -7,9 +7,14 @@ Vue.use(Vuex);
 
 //const debug = process.env.NODE_ENV !== 'production'
 
+const VERSION_PREFIX = 'sssg-';
+const INITIAL_DESKS = 6;
+
 export default new Vuex.Store({
   state: {
-    room: new Room(new BruteForceStrategy())
+    room: new Room(new BruteForceStrategy()),
+    versions: [],
+    newVersion: false,
   },
   getters: {
     allDesks: (state) => state.room.desks,
@@ -17,6 +22,8 @@ export default new Vuex.Store({
     isEmpty: (state) => state.room.desks.length === 0,
     allStudents: (state) => state.room.students,
     studentCount: (state) => state.room.students.length,
+    versions: (state) => state.versions,
+    newVersion: (state) => state.newVersion,
   },
   actions: {
     addDesk: ({ commit }) => {
@@ -54,6 +61,34 @@ export default new Vuex.Store({
     arrange: ({ commit }) => {
       commit('ARRANGE');
     },
+    newVersion: (context) => {
+      context.commit('CLEAR_ROOM');
+      return context.dispatch('toggleNewVersion', true).then(() => {
+        return Promise.all([...Array(INITIAL_DESKS)].map(() => {
+          context.dispatch('addDesk');
+        }));
+      }).then(() => {
+        return context.dispatch('normalize');
+      });
+    },
+    versions: ({ commit }) => {
+      commit('CLEAR_VERSIONS');
+      [...Array(window.localStorage.length)].map((_, index) => window.localStorage.key(index))
+        .filter(version => version.startsWith(VERSION_PREFIX))
+        .forEach(version => commit('ADD_VERSION', version));
+    },
+    loadVersion: ({ commit }, version) => {
+      commit('LOAD_ROOM',
+        JSON.parse(window.localStorage.getItem(`${VERSION_PREFIX}${version}`))
+      );
+    },
+    saveVersion: (context, version) => {
+      window.localStorage.setItem(`${VERSION_PREFIX}${version}`, JSON.stringify(context.state.room));
+      context.commit('ADD_VERSION', version);
+    },
+    toggleNewVersion: ({ commit }, newVersion) => {
+      commit('TOGGLE_NEW_VERSION', newVersion);
+    },
   },
   mutations: {
     ADD_DESK: (state) => {
@@ -84,6 +119,21 @@ export default new Vuex.Store({
     },
     ARRANGE: (state) => {
       state.room.arrange();
+    },
+    CLEAR_ROOM: (state) => {
+      state.room = new Room(new BruteForceStrategy());
+    },
+    LOAD_ROOM: (state, room) => {
+      state.room = room;
+    },
+    CLEAR_VERSIONS: (state) => {
+      state.versions = [];
+    },
+    ADD_VERSION: (state, version) => {
+      state.versions.push(version);
+    },
+    TOGGLE_NEW_VERSION: (state) => {
+      state.newVersion = !state.newVersion;
     },
   }
 });

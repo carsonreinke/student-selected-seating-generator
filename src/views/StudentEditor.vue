@@ -30,10 +30,10 @@ export default {
   },
   created() {
     if (this.$store.getters.isEmpty) {
-      this.$router.push("desks");
+      this.$router.push("/");
     }
 
     this.$store.dispatch("normalize");
-  },
+  }
 };
 </script>

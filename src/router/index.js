@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import About from '../views/About.vue'
+import VersionSelector from '../views/VersionSelector.vue'
 import DeskEditor from '../views/DeskEditor.vue';
 import StudentEditor from '../views/StudentEditor.vue';
 import ReportViewer from '../views/ReportViewer.vue';
@@ -10,13 +10,14 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'about',
-    component: About
+    name: 'version-selector',
+    component: VersionSelector
   },
   {
     path: '/desks',
     name: 'desk-editor',
-    component: DeskEditor
+    component: DeskEditor,
+    props: true,
   },
   {
     path: '/students',
