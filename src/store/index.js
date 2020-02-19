@@ -78,12 +78,17 @@ export default new Vuex.Store({
         .forEach(version => commit('ADD_VERSION', version));
     },
     loadVersion: ({ commit }, version) => {
+      const object = JSON.parse(window.localStorage.getItem(`${version}`)),
+        refs = JSON.parse(window.localStorage.getItem(`${version}_refs`));
+
       commit('LOAD_ROOM',
-        JSON.parse(window.localStorage.getItem(`${VERSION_PREFIX}${version}`))
+        Room.unmarshal(object, refs)
       );
     },
     saveVersion: (context, version) => {
-      window.localStorage.setItem(`${VERSION_PREFIX}${version}`, JSON.stringify(context.state.room));
+      const refs = {};
+      window.localStorage.setItem(`${VERSION_PREFIX}${version}`, JSON.stringify(context.state.room.marshal(refs)));
+      window.localStorage.setItem(`${VERSION_PREFIX}${version}_refs`, JSON.stringify(refs));
       context.commit('ADD_VERSION', version);
     },
     toggleNewVersion: ({ commit }, newVersion) => {
@@ -124,6 +129,7 @@ export default new Vuex.Store({
       state.room = new Room(new BruteForceStrategy());
     },
     LOAD_ROOM: (state, room) => {
+      console.log(room);
       state.room = room;
     },
     CLEAR_VERSIONS: (state) => {

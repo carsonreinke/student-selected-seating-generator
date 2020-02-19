@@ -2,7 +2,7 @@
   <main>
     <ol>
       <li @click="newVersion">New</li>
-      <li v-for="version in versions" :key="version" @click="loadVersion">{{ version }}</li>
+      <li v-for="version in versions" :key="version" @click="loadVersion(version)">{{ version }}</li>
     </ol>
   </main>
 </template>
@@ -19,10 +19,10 @@ export default {
         this.$router.push({name: "desk-editor", props: {newVersion: true}});
       });
     },
-    loadVersion(event) {
-      console.log(event);
-      //this.$store.dispatch("loadVersion", version);
-      //this.$router.push("desks");
+    loadVersion(version) {
+      this.$store.dispatch("loadVersion", version).then(() => {
+        this.$router.push("desks");
+      });
     }
   }
 };

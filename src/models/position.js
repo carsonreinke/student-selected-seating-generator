@@ -1,5 +1,8 @@
-export default class Position {
+import Base from './base';
+
+export default class Position extends Base {
     constructor() {
+        super();
         this.x = 0;
         this.y = 0;
     }

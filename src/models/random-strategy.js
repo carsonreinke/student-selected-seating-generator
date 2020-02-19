@@ -1,6 +1,10 @@
 import Strategy from './strategy';
 
 export default class RandomStrategy extends Strategy {
+    constructor() {
+        super();
+    }
+    
     /**
      * 
      * @param Room room 

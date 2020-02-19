@@ -1,8 +1,10 @@
+import Base from "./base";
 import Desk from "./desk";
 import Student from "./student";
 
-export default class Room {
+export default class Room extends Base {
     constructor(arrangementStrategy) {
+        super();
         this.desks = [];
         this.students = [];
         this.arrangementStrategy = arrangementStrategy;

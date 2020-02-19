@@ -1,5 +1,8 @@
-export default class Strategy {
+import Base from './base';
+
+export default class Strategy extends Base {
     constructor() {
+        super();
     }
 
     /**

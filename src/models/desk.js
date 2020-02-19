@@ -1,10 +1,9 @@
 import Position from './position';
+import Base from './base';
 
-let nextId = 1;
-
-export default class Desk {
+export default class Desk extends Base {
     constructor() {
-        this.id = nextId++;
+        super();
         this.student = null;
         this.position = new Position();
     }

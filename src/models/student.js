@@ -1,8 +1,8 @@
-let nextId = 1;
+import Base from './base';
 
-export default class Student {
+export default class Student extends Base {
     constructor() {
-        this.id = nextId++;
+        super();
         this.name = null;
         this.preferences = [];
     }
