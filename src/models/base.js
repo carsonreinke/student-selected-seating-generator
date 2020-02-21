@@ -72,7 +72,13 @@ export default class Base {
      * @param Object refs
      */
     static unmarshal(object, refs) {
-        const dest = new subclasses[object.__class__].constructor;
+        const klass = subclasses[object.__class__];
+        if(!klass) {
+            throw new Error(`Cannot find class "${object.__class__}"`);
+        }
+        const dest = new klass.constructor;
+
+        //Add the unmarshalled object to the refs
         refs[object.id][PROP_OBJECT] = dest;
 
         //Re-usable closure for looking up exisitng object or instead unmarshalling
