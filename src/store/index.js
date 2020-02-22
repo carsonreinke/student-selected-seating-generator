@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import Room from '@/models/room';
 import BruteForceStrategy from '@/models/brute-force-strategy';
+import { unmarshal } from '@/models';
 
 Vue.use(Vuex);
 
@@ -82,7 +83,7 @@ export default new Vuex.Store({
         refs = JSON.parse(window.localStorage.getItem(`${version}_refs`));
 
       commit('LOAD_ROOM',
-        Room.unmarshal(object, refs)
+        unmarshal(object, refs)
       );
     },
     saveVersion: (context, version) => {
@@ -129,7 +130,6 @@ export default new Vuex.Store({
       state.room = new Room(new BruteForceStrategy());
     },
     LOAD_ROOM: (state, room) => {
-      console.log(room);
       state.room = room;
     },
     CLEAR_VERSIONS: (state) => {

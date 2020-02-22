@@ -1,7 +1,6 @@
 let nextId = 0;
-const subclasses = {};
 
-const PROP_REF = '__ref__',
+export const PROP_REF = '__ref__',
     PROP_CLASS = '__class__',
     PROP_OBJECT = '__object__',
     PROP_ID = 'id',
@@ -9,9 +8,6 @@ const PROP_REF = '__ref__',
 
 export default class Base {
     constructor() {
-        if (!subclasses[this.constructor.name]) {
-            subclasses[this.constructor.name] = this.__proto__;
-        }
         this.id = nextId++;
     }
 
@@ -64,60 +60,5 @@ export default class Base {
         }
 
         return object;
-    }
-
-    /**
-     * 
-     * @param Object object 
-     * @param Object refs
-     */
-    static unmarshal(object, refs) {
-        const klass = subclasses[object.__class__];
-        if(!klass) {
-            throw new Error(`Cannot find class "${object.__class__}"`);
-        }
-        const dest = new klass.constructor;
-
-        //Add the unmarshalled object to the refs
-        refs[object.id][PROP_OBJECT] = dest;
-
-        //Re-usable closure for looking up exisitng object or instead unmarshalling
-        const lookupOrUnmarshal = (value) => {
-            let ref = refs[value.__ref__];
-            let obj = ref[PROP_OBJECT]; //See if already unmarshalled
-            if (!obj) {
-                //Unmarshall the object
-                obj = this.unmarshal(ref, refs);
-            }
-            return obj;
-        };
-
-        for (let [key, value] of Object.entries(object)) {
-            //Ignore marshalling related properties
-            if (key === PROP_ID || key === PROP_OBJECT || key === PROP_CLASS) {
-                continue;
-            }
-
-            switch (typeof (value)) {
-                case OBJECT:
-                    if (value === null) {
-                        dest[key] = null;
-                    }
-                    else if (Array.isArray(value)) {
-                        dest[key] = value.map((kv) => {
-                            return lookupOrUnmarshal(kv);
-                        });
-                    }
-                    else {
-                        dest[key] = lookupOrUnmarshal(value);
-                    }
-                    break;
-
-                default:
-                    dest[key] = value;
-            }
-        }
-
-        return dest;
     }
 }
