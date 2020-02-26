@@ -4,6 +4,7 @@
       <button @click="addDesk">Add Desk</button>
       <button @click="arrange">Arrange</button>
       <button @click="next">Next</button>
+      <button @click="startOver">Start Over</button>
     </nav>
     <main>
       <Room editable />
@@ -80,6 +81,9 @@ export default {
     },
     next() {
       this.$router.push("students");
+    },
+    startOver() {
+      this.$router.push("/");
     }
   },
   beforeRouteEnter(to, from, next) {
@@ -89,6 +93,7 @@ export default {
         return;
       }
 
+      //New versions must be arranged, so this strangeness is delaying rendering to arrange
       if (vm.$store.getters.newVersion) {
         setTimeout(vm.arrange, 0);
         vm.$store.dispatch("newVersion", false);

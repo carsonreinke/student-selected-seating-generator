@@ -8,6 +8,8 @@ export default class Room extends Base {
         this.desks = [];
         this.students = [];
         this.arrangementStrategy = arrangementStrategy;
+        this.name = 'Room';
+        this.createdAt = new Date().toISOString();
     }
 
     /**

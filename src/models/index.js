@@ -20,7 +20,7 @@ export function addClass(klass) {
  */
 const unmarshal = (object, refs) => {
     const klass = classes.find(kls => kls.name == object.__class__);
-    if(!klass) {
+    if (!klass) {
         throw new Error(`Cannot find class "${object.__class__}"`);
     }
     const dest = new klass;

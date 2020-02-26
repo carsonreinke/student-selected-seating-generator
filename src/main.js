@@ -11,6 +11,7 @@ new Vue({
   store,
   render: h => h(App),
   created() {
+    //Initialize store with all versions
     this.$store.dispatch('versions');
   },
 }).$mount('#app');

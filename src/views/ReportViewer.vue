@@ -4,6 +4,7 @@
       <button @click="previous">Previous</button>
       <button @click="print">Print</button>
       <button @click="save">Save</button>
+      <button @click="startOver">Start Over</button>
     </nav>
     <main>
       <Room />
@@ -27,8 +28,11 @@ export default {
       window.print();
     },
     save() {
-      this.$store.dispatch("saveVersion", new Date());
-    }
+      this.$store.dispatch("saveVersion");
+    },
+    startOver() {
+      this.$router.push("/");
+    },
   },
   created() {
     if (this.$store.getters.isEmpty) {

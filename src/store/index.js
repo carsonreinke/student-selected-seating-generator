@@ -9,7 +9,23 @@ Vue.use(Vuex);
 //const debug = process.env.NODE_ENV !== 'production'
 
 const VERSION_PREFIX = 'sssg-';
+const VERSION_REFS = '-refs';
 const INITIAL_DESKS = 6;
+
+const saveRoomToStorage = (room) => {
+  const refs = {},
+    version = room.createdAt;
+
+  window.localStorage.setItem(`${VERSION_PREFIX}${version}`, JSON.stringify(room.marshal(refs)));
+  window.localStorage.setItem(`${VERSION_PREFIX}${version}${VERSION_REFS}`, JSON.stringify(refs));
+};
+
+const loadRoomFromStorage = (version) => {
+  const object = JSON.parse(window.localStorage.getItem(`${version}`)),
+    refs = JSON.parse(window.localStorage.getItem(`${version}${VERSION_REFS}`));
+
+  return unmarshal(object, refs);
+};
 
 export default new Vuex.Store({
   state: {
@@ -25,6 +41,7 @@ export default new Vuex.Store({
     studentCount: (state) => state.room.students.length,
     versions: (state) => state.versions,
     newVersion: (state) => state.newVersion,
+    name: (state) => state.room.name,
   },
   actions: {
     addDesk: ({ commit }) => {
@@ -76,24 +93,36 @@ export default new Vuex.Store({
       commit('CLEAR_VERSIONS');
       [...Array(window.localStorage.length)].map((_, index) => window.localStorage.key(index))
         .filter(version => version.startsWith(VERSION_PREFIX))
-        .forEach(version => commit('ADD_VERSION', version));
+        .filter(version => !version.endsWith(VERSION_REFS))
+        .forEach((version) => {
+          let room;
+          try {
+            room = loadRoomFromStorage(version)
+          }
+          catch(e) {
+            console.error(e);
+          }
+          commit('ADD_VERSION', room);
+        });
     },
     loadVersion: ({ commit }, version) => {
-      const object = JSON.parse(window.localStorage.getItem(`${version}`)),
-        refs = JSON.parse(window.localStorage.getItem(`${version}_refs`));
-
-      commit('LOAD_ROOM',
-        unmarshal(object, refs)
-      );
+      commit('LOAD_ROOM', version);
     },
-    saveVersion: (context, version) => {
-      const refs = {};
-      window.localStorage.setItem(`${VERSION_PREFIX}${version}`, JSON.stringify(context.state.room.marshal(refs)));
-      window.localStorage.setItem(`${VERSION_PREFIX}${version}_refs`, JSON.stringify(refs));
-      context.commit('ADD_VERSION', version);
+    saveVersion: (context) => {
+      const room = context.state.room;
+
+      saveRoomToStorage(room);
+      
+      //Add verison if new
+      if(!context.state.versions.includes(room)) {
+        context.commit('ADD_VERSION', room);
+      }
     },
     toggleNewVersion: ({ commit }, newVersion) => {
       commit('TOGGLE_NEW_VERSION', newVersion);
+    },
+    editName: ({ commit }, name) => {
+      commit('EDIT_NAME', name);
     },
   },
   mutations: {
@@ -112,7 +141,7 @@ export default new Vuex.Store({
     },
     ADD_STUDENT: (state) => {
       const student = state.room.addStudent();
-      student.name = `Student ${student.id}`
+      student.name = `Student ${state.room.students.length}`
     },
     CHANGE_STUDENT_NAME: (state, { student, name }) => {
       student.name = name;
@@ -140,6 +169,9 @@ export default new Vuex.Store({
     },
     TOGGLE_NEW_VERSION: (state) => {
       state.newVersion = !state.newVersion;
+    },
+    EDIT_NAME: (state, name) => {
+      state.room.name = name;
     },
   }
 });
