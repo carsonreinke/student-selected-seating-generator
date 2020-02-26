@@ -40,3 +40,8 @@ test('findStudentDesk multiple', () => {
 
     expect(room.findStudentDesk(d2.student)).toEqual(d2);
 });
+
+test('createdAtDate', () => {
+    const room = new Room();
+    expect(room.createdAtDate()).toBeInstanceOf(Date);
+});

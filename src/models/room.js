@@ -54,4 +54,13 @@ export default class Room extends Base {
     findStudentDesk(student) {
         return this.desks.find(desk => desk.student === student);
     }
+
+    /**
+     * Created date
+     * 
+     * @returns Date
+     */
+    createdAtDate() {
+        return new Date(this.createdAt);
+    }
 }

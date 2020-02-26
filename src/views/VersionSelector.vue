@@ -2,7 +2,7 @@
   <main>
     <ol>
       <li @click="newVersion">New</li>
-      <li v-for="version in versions" :key="version.id" @click="loadVersion(version)">{{ version.name }} {{ version.createdAt }}</li>
+      <li v-for="version in versions" :key="version.id" @click="loadVersion(version)">{{ version.name }} {{ version.createdAtDate().toLocaleString() }}</li>
     </ol>
   </main>
 </template>
