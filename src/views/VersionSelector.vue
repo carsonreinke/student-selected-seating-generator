@@ -13,6 +13,7 @@
       </ul>
     </nav>
     <main>
+      <h2>Welcome</h2>
       <p>TODO</p>
     </main>
   </div>

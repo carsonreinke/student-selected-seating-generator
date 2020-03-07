@@ -3,9 +3,10 @@
     <nav class="pure-menu">
       <BaseHeader />
       <ul class="pure-menu-list">
+        <li class="pure-menu-item pure-menu-link" @click="next">Next</li>
         <li class="pure-menu-item pure-menu-link" @click="addDesk">Add Desk</li>
         <li class="pure-menu-item pure-menu-link" @click="arrange">Arrange</li>
-        <li class="pure-menu-item pure-menu-link" @click="next">Next</li>
+        
         <li class="pure-menu-item pure-menu-link" @click="startOver">Start Over</li>
       </ul>
     </nav>

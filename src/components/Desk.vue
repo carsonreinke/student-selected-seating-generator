@@ -1,7 +1,7 @@
 <template>
   <div
     class="desk"
-    :draggable="editable"
+    :draggable="isEditable"
     :style="{ left: desk.position.x + 'px', top: desk.position.y + 'px' }"
     @dragstart="onDragStart"
     @touchstart="onDragStart"
@@ -22,6 +22,11 @@ export default {
   props: {
     desk: Object,
     editable: Boolean,
+  },
+  computed: {
+    isEditable() {
+      return this.editable;
+    }
   },
   data: () => {
     return {
@@ -91,5 +96,9 @@ export default {
 
 .desk > button {
   pointer-events: auto;
+}
+
+.desk[draggable="true"] {
+  cursor: move;
 }
 </style>

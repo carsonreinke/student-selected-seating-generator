@@ -5,7 +5,12 @@
 </template>
 
 <style>
-html, body {
+html {
+  font-family: "Capriola", sans-serif !important;
+}
+
+html,
+body {
   margin: 0;
   padding: 0;
 }
@@ -40,6 +45,7 @@ nav ul li.pure-menu-item.pure-menu-link:hover {
 
 main {
   margin-left: 200px;
+  padding: 1em;
 }
 
 /*nav {

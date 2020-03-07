@@ -3,8 +3,8 @@
     <nav class="pure-menu">
       <BaseHeader />
       <ul class="pure-menu-list">
-        <li class="pure-menu-item pure-menu-link" @click="previous">Previous</li>
         <li class="pure-menu-item pure-menu-link" @click="next">Next</li>
+        <li class="pure-menu-item pure-menu-link" @click="previous">Previous</li>
       </ul>
     </nav>
     <main>
