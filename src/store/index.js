@@ -50,6 +50,9 @@ export default new Vuex.Store({
     moveDesk: ({ commit }, { desk, x, y }) => {
       commit('EDIT_DESK_POSITION', { desk, x, y });
     },
+    rotateDesk: ({ commit }, { desk, angle }) => {
+      commit('EDIT_DESK_ANGLE', { desk, angle });
+    },
     removeDesk: ({ commit }, desk) => {
       commit('REMOVE_DESK', desk);
     },
@@ -99,7 +102,7 @@ export default new Vuex.Store({
           try {
             room = loadRoomFromStorage(version)
           }
-          catch(e) {
+          catch (e) {
             console.error(e);
           }
           commit('ADD_VERSION', room);
@@ -112,9 +115,9 @@ export default new Vuex.Store({
       const room = context.state.room;
 
       saveRoomToStorage(room);
-      
+
       //Add verison if new
-      if(!context.state.versions.includes(room)) {
+      if (!context.state.versions.includes(room)) {
         context.commit('ADD_VERSION', room);
       }
     },
@@ -132,6 +135,9 @@ export default new Vuex.Store({
     EDIT_DESK_POSITION: (state, { desk, x, y }) => {
       desk.position.x = x;
       desk.position.y = y;
+    },
+    EDIT_DESK_ANGLE: (state, { desk, angle }) => {
+      desk.position.angle = angle;
     },
     REMOVE_DESK: (state, desk) => {
       state.room.removeDesk(desk);

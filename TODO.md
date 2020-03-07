@@ -17,6 +17,9 @@
 * Style drop downs for student editor
 * Add introduction description
 * Add privacy policy
+* Add e2e tests
 * Browser testing
 * Add confirmation on save
-* Add desk rotation
+* ~~Add desk rotation~~
+* Figure out VSCode code formatting
+* Fix touch events
