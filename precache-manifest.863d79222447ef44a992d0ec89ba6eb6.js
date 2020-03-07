@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "47be3a79bcb93f41bcab",
-    "url": "/student-selected-seating-generator/css/app.fc562f3b.css"
+    "revision": "4cac1300563ad8085724",
+    "url": "/student-selected-seating-generator/css/app.4edae66a.css"
   },
   {
-    "revision": "fca58b38005a6b2d96a3",
-    "url": "/student-selected-seating-generator/css/chunk-vendors.96a655cf.css"
+    "revision": "23c3133810629498367e",
+    "url": "/student-selected-seating-generator/css/chunk-vendors.2a88d96b.css"
   },
   {
     "revision": "c58ff9d72352b98461e9b50bc7a28553",
     "url": "/student-selected-seating-generator/img/desk.c58ff9d7.svg"
   },
   {
-    "revision": "568c3a8a37b1b7558bebc6b177948074",
+    "revision": "e20fe5b09c07e75a6c870170da8508d2",
     "url": "/student-selected-seating-generator/index.html"
   },
   {
-    "revision": "47be3a79bcb93f41bcab",
-    "url": "/student-selected-seating-generator/js/app.1c8f3cbc.js"
+    "revision": "4cac1300563ad8085724",
+    "url": "/student-selected-seating-generator/js/app.29b5de0e.js"
   },
   {
-    "revision": "fca58b38005a6b2d96a3",
-    "url": "/student-selected-seating-generator/js/chunk-vendors.d7e3bcf5.js"
+    "revision": "23c3133810629498367e",
+    "url": "/student-selected-seating-generator/js/chunk-vendors.b1a1d688.js"
   },
   {
     "revision": "dadb8afb31cd7ef331a01815638ead0f",
