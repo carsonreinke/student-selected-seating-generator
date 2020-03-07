@@ -1,7 +1,7 @@
 <template>
   <div
     class="desk"
-    draggable="true"
+    :draggable="editable"
     :style="{ left: desk.position.x + 'px', top: desk.position.y + 'px' }"
     @dragstart="onDragStart"
     @touchstart="onDragStart"

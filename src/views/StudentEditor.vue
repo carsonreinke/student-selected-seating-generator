@@ -1,8 +1,11 @@
 <template>
   <div id="container">
-    <nav>
-      <button @click="previous">Previous</button>
-      <button @click="next">Next</button>
+    <nav class="pure-menu">
+      <BaseHeader />
+      <ul class="pure-menu-list">
+        <li class="pure-menu-item pure-menu-link" @click="previous">Previous</li>
+        <li class="pure-menu-item pure-menu-link" @click="next">Next</li>
+      </ul>
     </nav>
     <main>
       <Student v-for="student in allStudents" :key="student.id" :student="student" />
@@ -12,12 +15,14 @@
 
 <script>
 import Student from "@/components/Student.vue";
+import BaseHeader from "@/components/BaseHeader.vue";
 import { mapGetters } from "vuex";
 
 export default {
   name: "student-editor",
   components: {
-    Student
+    Student,
+    BaseHeader
   },
   computed: mapGetters(["allStudents"]),
   methods: {

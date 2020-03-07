@@ -1,10 +1,13 @@
 <template>
   <div id="container">
-    <nav>
-      <button @click="previous">Previous</button>
-      <button @click="print">Print</button>
-      <button @click="save">Save</button>
-      <button @click="startOver">Start Over</button>
+    <nav class="pure-menu">
+      <BaseHeader />
+      <ul class="pure-menu-list">
+        <li class="pure-menu-item pure-menu-link" @click="previous">Previous</li>
+        <li class="pure-menu-item pure-menu-link" @click="print">Print</li>
+        <li class="pure-menu-item pure-menu-link" @click="save">Save</li>
+        <li class="pure-menu-item pure-menu-link" @click="startOver">Start Over</li>
+      </ul>
     </nav>
     <main>
       <Room />
@@ -14,11 +17,13 @@
 
 <script>
 import Room from "@/components/Room";
+import BaseHeader from "@/components/BaseHeader.vue";
 
 export default {
   name: "report",
   components: {
-    Room
+    Room,
+    BaseHeader
   },
   methods: {
     previous() {
@@ -32,7 +37,7 @@ export default {
     },
     startOver() {
       this.$router.push("/");
-    },
+    }
   },
   created() {
     if (this.$store.getters.isEmpty) {

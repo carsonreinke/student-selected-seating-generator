@@ -1,12 +1,12 @@
 <template>
   <div id="room">
-    <div
+    <h2
       class="name"
       :contenteditable="isEditable"
       v-text="name"
       @blur="onBlur"
       @keydown.enter="onKeyDown"
-    ></div>
+    ></h2>
     <Desk v-for="desk in allDesks" :key="desk.id" :desk="desk" :editable="isEditable" />
   </div>
 </template>
@@ -44,15 +44,22 @@ export default {
 
 <style scoped>
 #room {
-  position: absolute;
   left: 0;
   top: 0;
-  width: calc(100% - 3rem);
+  margin-left: 200px;
+  width: calc(100% - 200px);
   height: 100%;
-  margin-left: 3rem;
+  position: absolute;
 }
 
 #room .name {
   text-align: center;
+}
+
+@media print {
+  #room {
+    margin: 0;
+    width: 100%;
+  }
 }
 </style>

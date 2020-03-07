@@ -1,10 +1,13 @@
 <template>
   <div id="container">
-    <nav>
-      <button @click="addDesk">Add Desk</button>
-      <button @click="arrange">Arrange</button>
-      <button @click="next">Next</button>
-      <button @click="startOver">Start Over</button>
+    <nav class="pure-menu">
+      <BaseHeader />
+      <ul class="pure-menu-list">
+        <li class="pure-menu-item pure-menu-link" @click="addDesk">Add Desk</li>
+        <li class="pure-menu-item pure-menu-link" @click="arrange">Arrange</li>
+        <li class="pure-menu-item pure-menu-link" @click="next">Next</li>
+        <li class="pure-menu-item pure-menu-link" @click="startOver">Start Over</li>
+      </ul>
     </nav>
     <main>
       <Room editable />
@@ -14,13 +17,15 @@
 
 <script>
 import Room from "@/components/Room";
+import BaseHeader from "@/components/BaseHeader.vue";
 import { mapActions } from "vuex";
 const INITIAL_DESKS = 6;
 
 export default {
   name: "desk-editor",
   components: {
-    Room
+    Room,
+    BaseHeader
   },
   methods: {
     ...mapActions(["addDesk", "initialDesks"]),
@@ -42,7 +47,7 @@ export default {
       const maxColumns = Math.floor(containerRect.width / deskRect.width),
         maxRows = Math.floor(containerRect.height / deskRect.height);
       if (maxColumns * maxRows < this.$store.getters.deskCount) {
-        throw new Exception("Too many desks to arrange");
+        throw new Error("Too many desks to arrange");
       }
       //Change columns/rows to match the number of items
       const columns = Math.floor(
