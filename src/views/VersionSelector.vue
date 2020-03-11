@@ -3,13 +3,16 @@
     <nav class="pure-menu">
       <BaseHeader />
       <ul class="pure-menu-list">
-        <li class="pure-menu-item pure-menu-link" @click="newVersion">New</li>
+        <li class="pure-menu-item pure-menu-link menu-new" @click="newVersion"><img src="../assets/images/add.svg" alt="New"> New</li>
+      </ul>
+      <h3>Saved</h3>
+      <ul class="pure-menu-list menu-bottom">
         <li
           class="pure-menu-item pure-menu-link"
           v-for="version in versions"
           :key="version.id"
           @click="loadVersion(version)"
-        >{{ version.name }} {{ version.createdAtDate().toLocaleString() }}</li>
+        >{{ version.name }} Created On {{ version.createdAtDate().toLocaleString() }}</li>
       </ul>
     </nav>
     <main>

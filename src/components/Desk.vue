@@ -8,10 +8,17 @@
     @touchstart="onDragStart"
     @touchend="onDragEnd"
   >
-    <img alt="Desk" src="../assets/desk.svg" />
+    <img alt="Drag Me" src="../assets/images/drag.svg" v-if="isEditable" />
+    <!-- <img alt="Desk" src="../assets/images/desk.svg" /> -->
     <div class="name">{{ name() }}</div>
-    <button @click="removeDesk(desk)" v-if="isEditable">Delete</button>
-    <a @mousedown="onRotateStart" @touchstart="onRotateStart" v-if="isEditable">Rotate</a>
+    <img alt="Delete" src="../assets/images/delete.svg" @click="removeDesk(desk)" v-if="isEditable" />
+    <img
+      alt="Rotate Me"
+      src="../assets/images/rotate.svg"
+      @mousedown="onRotateStart"
+      @touchstart="onRotateStart"
+      v-if="isEditable"
+    />
   </div>
 </template>
 
@@ -179,8 +186,7 @@ export default {
   pointer-events: none;
 }
 
-.desk > button,
-.desk > a {
+.desk > img {
   pointer-events: auto;
 }
 

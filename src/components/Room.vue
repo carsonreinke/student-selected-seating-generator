@@ -1,12 +1,13 @@
 <template>
   <div id="room">
+    <div class="name">
     <h2
-      class="name"
       :contenteditable="isEditable"
       v-text="name"
       @blur="onBlur"
       @keydown.enter="onKeyDown"
     ></h2>
+    </div>
     <Desk v-for="desk in allDesks" :key="desk.id" :desk="desk" :editable="isEditable" />
   </div>
 </template>
@@ -52,8 +53,27 @@ export default {
   position: absolute;
 }
 
-#room .name {
+#room div.name {
   text-align: center;
+}
+
+#room div.name h2 {
+  display: inline-block;
+}
+
+#room div.name h2[contenteditable="true"] {
+  background-image: url('../assets/images/edit.svg');
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-position-y: center;
+  padding-right: 30px;
+  margin-right: 0;
+}
+
+#room div.name h2[contenteditable="true"]:focus {
+  background-image: none;
+  padding-right: 0;
+  margin-right: 30px;
 }
 
 @media print {

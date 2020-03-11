@@ -3,10 +3,10 @@
     <nav class="pure-menu">
       <BaseHeader />
       <ul class="pure-menu-list">
-        <li class="pure-menu-item pure-menu-link" @click="previous">Previous</li>
-        <li class="pure-menu-item pure-menu-link" @click="print">Print</li>
-        <li class="pure-menu-item pure-menu-link" @click="save">Save</li>
-        <li class="pure-menu-item pure-menu-link" @click="startOver">Start Over</li>
+        <li class="pure-menu-item pure-menu-link" @click="previous"><img src="../assets/images/back.svg" alt="Previous"> Previous</li>
+        <li class="pure-menu-item pure-menu-link" @click="startOver"><img src="../assets/images/start-over.svg" alt="Start Over"> Start Over</li>
+        <li class="pure-menu-item pure-menu-link" @click="print"><img src="../assets/images/print.svg" alt="Print"> Print</li>
+        <li class="pure-menu-item pure-menu-link" @click="save"><img src="../assets/images/save.svg" alt="Save"> Save</li>
       </ul>
     </nav>
     <main>

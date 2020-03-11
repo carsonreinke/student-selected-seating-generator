@@ -9,11 +9,10 @@
     font-size: 1em;
     font-weight: bold;
     margin: 0;
-    padding: 0.5em 1em;
-    text-align: center;
+    padding: 1.25em 1em;
   }
 
   header {
-    border-bottom: 1px #555555 solid;
+    border-bottom: 1px rgba(0, 0, 0, 0.1) solid;
   }
 </style>
