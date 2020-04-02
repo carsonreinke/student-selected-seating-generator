@@ -9,7 +9,7 @@
       </ul>
     </nav>
     <main>
-      <h2>Welcome</h2>
+      <h2>Students</h2>
       <p>TODO</p>
       <Student v-for="student in allStudents" :key="student.id" :student="student" />
     </main>

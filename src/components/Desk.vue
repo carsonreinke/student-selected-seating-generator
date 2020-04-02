@@ -216,6 +216,7 @@ export default {
 .container {
   position: relative;
   border: 2px solid black;
+  background-color: #ffffff;
 }
 
 .desk * {

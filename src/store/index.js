@@ -55,16 +55,29 @@ export default new Vuex.Store({
     },
     removeDesk: ({ commit }, desk) => {
       commit('REMOVE_DESK', desk);
+      
+      //Also remove student if any
+      if(desk.student) {
+        commit('REMOVE_STUDENT', desk.student);
+      }
     },
     arrange: ({ commit }) => {
       commit('ARRANGE');
     },
     addStudent: ({ commit }) => commit('ADD_STUDENT'),
+    removeStudent: ({ commit }, student) => {
+      commit('REMOVE_STUDENT', student);
+      
+      //Also remove desk if any
+      if(student.desk) {
+        commit('REMOVE_DESK', student.desk);
+      }
+    },
     normalize: (context) => {
       const diff = context.getters.deskCount - context.getters.studentCount;
 
       if (diff < 0) {
-        [...Array(Math.abs(diff))].forEach(() => context.dispatch('addDesk'));
+        context.getters.allStudents.slice(diff).forEach((student) => context.dispatch('removeStudent', student));
       }
       else if (diff > 0) {
         [...Array(diff)].forEach(() => context.dispatch('addStudent'));
@@ -148,6 +161,9 @@ export default new Vuex.Store({
     ADD_STUDENT: (state) => {
       const student = state.room.addStudent();
       student.name = `Student ${state.room.students.length}`
+    },
+    REMOVE_STUDENT: (state, student) => {
+      state.room.removeStudent(student);
     },
     CHANGE_STUDENT_NAME: (state, { student, name }) => {
       student.name = name;

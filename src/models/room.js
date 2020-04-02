@@ -39,6 +39,14 @@ export default class Room extends Base {
     }
 
     /**
+     * 
+     * @param Student student
+     */
+    removeStudent(student) {
+        this.students = this.students.filter(value => value.id !== student.id);
+    }
+
+    /**
      * @todo
      */
     arrange() {
