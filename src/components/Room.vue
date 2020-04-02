@@ -66,12 +66,16 @@ export default {
   background-repeat: no-repeat;
   background-position-x: right;
   background-position-y: center;
+  outline-color: rgba(0, 0, 0, 0.2);
+  outline-style: dashed;
+  outline-width: 2px;
   padding-right: 30px;
   margin-right: 0;
 }
 
 #room div.name h2[contenteditable="true"]:focus {
   background-image: none;
+  outline-style: none;
   padding-right: 0;
   margin-right: 30px;
 }

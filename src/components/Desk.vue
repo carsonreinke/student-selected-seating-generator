@@ -1,6 +1,6 @@
 <template>
   <div
-    class="desk"
+    :class="{'desk': true, 'active': isDragging}"
     :draggable="isEditable"
     :style="{ left: desk.position.x + 'px', top: desk.position.y + 'px', transform: 'rotate(' +  desk.position.angle + 'deg)' }"
     @dragstart="onDragStart"
@@ -8,17 +8,35 @@
     @touchstart="onDragStart"
     @touchend="onDragEnd"
   >
-    <img alt="Drag Me" src="../assets/images/drag.svg" v-if="isEditable" />
-    <!-- <img alt="Desk" src="../assets/images/desk.svg" /> -->
-    <div class="name">{{ name() }}</div>
-    <img alt="Delete" src="../assets/images/delete.svg" @click="removeDesk(desk)" v-if="isEditable" />
-    <img
-      alt="Rotate Me"
-      src="../assets/images/rotate.svg"
-      @mousedown="onRotateStart"
-      @touchstart="onRotateStart"
-      v-if="isEditable"
-    />
+    <div class="icon">
+      <img alt src="../assets/images/desk.svg" />
+    </div>
+    <div class="container">
+      <div class="drag-handle">
+        <img alt="Drag Me" src="../assets/images/drag.svg" v-if="isEditable" />
+      </div>
+      <div class="delete-handle">
+        <img
+          alt="Delete"
+          src="../assets/images/delete.svg"
+          @click="removeDesk(desk)"
+          v-if="isEditable"
+        />
+      </div>
+      <!-- <img alt="Desk" src="../assets/images/desk.svg" /> -->
+      <div class="name">{{ name() }}</div>
+
+      <div :class="{ 'rotate-handle': true, 'active': isRotating }">
+        <img
+          alt="Rotate Me"
+          src="../assets/images/rotate.svg"
+          @mousedown="onRotateStart"
+          @touchstart="onRotateStart"
+          v-if="isEditable"
+        />
+      </div>
+      <div class="clear"></div>
+    </div>
   </div>
 </template>
 
@@ -36,6 +54,12 @@ export default {
   computed: {
     isEditable() {
       return this.editable;
+    },
+    isRotating() {
+      return this.rotating !== null;
+    },
+    isDragging() {
+      return this.initialPosition !== null;
     }
   },
   data: () => {
@@ -48,7 +72,7 @@ export default {
     ...mapActions(["moveDesk", "removeDesk", "rotateDesk"]),
     name() {
       const { desk } = this;
-      return desk.student === null ? "Desk" : desk.student.name;
+      return desk.student === null ? "Student" : desk.student.name;
     },
     onDragStart(event) {
       this.initialPosition = { x: event.clientX, y: event.clientY };
@@ -84,12 +108,15 @@ export default {
       }
 
       this.moveDesk({ desk, x, y });
+
+      //Reset object
+      this.initialPosition = null;
     },
     onRotateStart(event) {
       //Concept copied from https://bl.ocks.org/joyrexus/7207044
       const { desk } = this,
         element = event.target,
-        rect = element.parentElement.getBoundingClientRect();
+        rect = element.parentElement.parentElement.getBoundingClientRect();
 
       event.preventDefault();
       event.stopPropagation();
@@ -173,24 +200,104 @@ export default {
 <style scoped>
 .desk {
   position: absolute;
-  padding: 0.5rem;
-  border: 1px solid black;
-  background: white;
+  width: 9em;
 }
 
-.desk > img {
-  width: 5rem;
+.icon {
+  text-align: center;
+}
+
+.icon > img {
+  vertical-align: bottom;
+  text-align: center;
+  width: 50%;
+}
+
+.container {
+  position: relative;
+  border: 2px solid black;
 }
 
 .desk * {
   pointer-events: none;
 }
 
-.desk > img {
+.desk[draggable="true"] {
+  cursor: grab;
+}
+
+.desk[draggable="true"].active {
+  cursor: grabbing;
+}
+
+.desk .drag-handle {
+  float: left;
+  width: 22px;
+  height: 22px;
+}
+
+.desk .drag-handle > img {
+  display: none;
+}
+
+.desk:hover .drag-handle > img {
+  display: block;
+}
+
+.delete-handle {
+  float: right;
+  width: 22px;
+  height: 22px;
+}
+
+.delete-handle > img {
+  display: none;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.desk:hover .delete-handle > img {
+  display: block;
+}
+
+.name {
+  clear: both;
+  text-align: center;
+  padding: 1rem 2rem;
+}
+
+.desk .rotate-handle {
+  float: right;
+  width: 22px;
+  height: 22px;
+}
+
+.desk .rotate-handle > img {
+  display: none;
   pointer-events: auto;
 }
 
-.desk[draggable="true"] {
-  cursor: move;
+.desk:hover .rotate-handle > img,
+.rotate-handle.active > img {
+  display: block;
+}
+
+.clear {
+  clear: both;
+}
+
+@media screen {
+  .container {
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  .container:hover {
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@media print {
+  .desk {
+  }
 }
 </style>

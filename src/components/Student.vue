@@ -1,14 +1,6 @@
 <template>
   <div class="student">
-    <input type="text" :value="student.name" @input="onNameChange" />
-
-    <!--<select v-model="preferences" multiple>
-      <option
-        v-for="student in otherStudents"
-        :key="student.id"
-        :value="student.id"
-      >{{ student.name }}</option>
-    </select>-->
+    <div class="name"><input type="text" :value="student.name" @input="onNameChange" /></div>
     <multiselect
       :multiple="true"
       :value="preferences"
@@ -74,4 +66,18 @@ export default {
 </script>
 
 <style>
+.student {
+  clear: both;
+  width: 100%;
+}
+
+.student .name {
+  float: left;
+  width: 25%;
+}
+
+.multiselect {
+  float: right;
+  width: 75%;
+}
 </style>
