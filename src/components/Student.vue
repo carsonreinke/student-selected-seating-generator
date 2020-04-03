@@ -81,9 +81,9 @@ export default {
 }
 
 .student .name input {
-  width: calc(100% - 0.5em);
+  width: calc(100% - 8px);
   min-height: 33px;
-  border-color: transparent;
+  border: transparent solid 4px;
   outline: none;
 }
 
