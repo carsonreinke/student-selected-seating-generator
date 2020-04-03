@@ -1,11 +1,18 @@
 <template>
   <div id="container">
+    <BaseHamburger />
     <nav class="pure-menu">
       <BaseHeader />
       <ul class="pure-menu-list">
-        <li class="pure-menu-item pure-menu-link" @click="next"><img src="../assets/images/forward.svg" alt="Next"> Next</li>
-        <li class="pure-menu-item pure-menu-link" @click="previous"><img src="../assets/images/back.svg" alt="Previous"> Previous</li>
-        <li class="pure-menu-item pure-menu-link" @click="startOver"><img src="../assets/images/start-over.svg" alt="Start Over"> Start Over</li>
+        <li class="pure-menu-item pure-menu-link" @click="next">
+          <img src="../assets/images/forward.svg" alt="Next" /> Next
+        </li>
+        <li class="pure-menu-item pure-menu-link" @click="previous">
+          <img src="../assets/images/back.svg" alt="Previous" /> Previous
+        </li>
+        <li class="pure-menu-item pure-menu-link" @click="startOver">
+          <img src="../assets/images/start-over.svg" alt="Start Over" /> Start Over
+        </li>
       </ul>
     </nav>
     <main>
@@ -18,6 +25,7 @@
 
 <script>
 import Student from "@/components/Student.vue";
+import BaseHamburger from "@/components/BaseHamburger.vue";
 import BaseHeader from "@/components/BaseHeader.vue";
 import { mapGetters } from "vuex";
 
@@ -25,6 +33,7 @@ export default {
   name: "student-editor",
   components: {
     Student,
+    BaseHamburger,
     BaseHeader
   },
   computed: mapGetters(["allStudents"]),

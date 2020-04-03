@@ -1,5 +1,6 @@
 <template>
   <div>
+    <BaseHamburger />
     <nav class="pure-menu">
       <BaseHeader />
       <ul class="pure-menu-list">
@@ -24,11 +25,13 @@
 
 <script>
 import { mapGetters } from "vuex";
+import BaseHamburger from "@/components/BaseHamburger.vue";
 import BaseHeader from "@/components/BaseHeader.vue";
 
 export default {
   name: "version-selector",
   components: {
+    BaseHamburger,
     BaseHeader
   },
   computed: mapGetters(["versions"]),

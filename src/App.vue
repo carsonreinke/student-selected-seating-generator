@@ -5,11 +5,11 @@
 </template>
 
 <script>
-require('purecss');
+require("purecss");
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Capriola&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Capriola&display=swap");
 
 html {
   font-family: "Capriola", sans-serif;
@@ -30,7 +30,7 @@ nav {
   z-index: 1;
 
   color: #000000;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: #f2f2f2;
   overflow: auto;
 }
 
@@ -76,20 +76,70 @@ nav ul li.pure-menu-item.pure-menu-link:hover {
 main {
   margin-left: 200px;
   padding: 1em;
+  z-index: 0;
 }
 
-/*nav {
+.hamburger {
   position: fixed;
-  width: 3em;
-  height: 100%;
+  display: block;
+  top: 0;
+  left: 0;
+  background: #000000;
+  background: rgba(0, 0, 0, 0.7);
+  font-size: 10px;
   z-index: 1;
-
-  background-color: gray;
+  width: 2em;
+  height: auto;
+  padding: 2.1em 1.6em;
 }
 
-main {
-  margin-left: 3em;
-}*/
+.hamburger:hover,
+.hamburger:focus {
+  background: #000000;
+}
+
+.hamburger span {
+  position: relative;
+  display: block;
+}
+
+.hamburger span,
+.hamburger span:before,
+.hamburger span:after {
+  background-color: #ffffff;
+  width: 100%;
+  height: 0.2em;
+}
+
+.hamburger span:before,
+.hamburger span:after {
+  position: absolute;
+  margin-top: -0.6em;
+  content: " ";
+}
+
+.hamburger span:after {
+  margin-top: 0.6em;
+}
+
+@media (max-width: 768px) {
+  nav {
+    display: none;
+  }
+
+  main {
+    margin-top: 2em;
+    margin-left: 0;
+  }
+
+  .expanded .hamburger {
+    left: 200px;
+  }
+
+  .expanded nav {
+    display: block;
+  }
+}
 
 @media print {
   @page {

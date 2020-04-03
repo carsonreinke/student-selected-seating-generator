@@ -1,15 +1,24 @@
 <template>
   <div id="container">
+    <BaseHamburger />
     <nav class="pure-menu">
       <BaseHeader />
       <ul class="pure-menu-list">
-        <li class="pure-menu-item pure-menu-link" @click="next"><img src="../assets/images/forward.svg" alt="Next"> Next</li>
-        <li class="pure-menu-item pure-menu-link" @click="startOver"><img src="../assets/images/start-over.svg" alt="Start Over"> Start Over</li>
+        <li class="pure-menu-item pure-menu-link" @click="next">
+          <img src="../assets/images/forward.svg" alt="Next" /> Next
+        </li>
+        <li class="pure-menu-item pure-menu-link" @click="startOver">
+          <img src="../assets/images/start-over.svg" alt="Start Over" /> Start Over
+        </li>
       </ul>
       <h3>Edit</h3>
       <ul class="pure-menu-list menu-bottom">
-        <li class="pure-menu-item pure-menu-link" @click="addDesk"><img src="../assets/images/add.svg" alt="Add Desk"> Add Desk</li>
-        <li class="pure-menu-item pure-menu-link" @click="arrange"><img src="../assets/images/arrange.svg" alt="Arrange"> Arrange</li>
+        <li class="pure-menu-item pure-menu-link" @click="addDesk">
+          <img src="../assets/images/add.svg" alt="Add Desk" /> Add Desk
+        </li>
+        <li class="pure-menu-item pure-menu-link" @click="arrange">
+          <img src="../assets/images/arrange.svg" alt="Arrange" /> Arrange
+        </li>
       </ul>
     </nav>
     <main>
@@ -20,6 +29,7 @@
 
 <script>
 import Room from "@/components/Room";
+import BaseHamburger from "@/components/BaseHamburger.vue";
 import BaseHeader from "@/components/BaseHeader.vue";
 import { mapActions } from "vuex";
 const INITIAL_DESKS = 6;
@@ -28,6 +38,7 @@ export default {
   name: "desk-editor",
   components: {
     Room,
+    BaseHamburger,
     BaseHeader
   },
   methods: {
