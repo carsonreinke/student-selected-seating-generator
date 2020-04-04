@@ -3,6 +3,7 @@
     <BaseHamburger />
     <nav class="pure-menu">
       <BaseHeader />
+      <p>Provide the arrangement of desks for the room.</p>
       <ul class="pure-menu-list">
         <li class="pure-menu-item pure-menu-link" @click="next">
           <img src="../assets/images/forward.svg" alt="Next" /> Next

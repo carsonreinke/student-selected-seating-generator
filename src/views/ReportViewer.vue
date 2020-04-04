@@ -3,6 +3,7 @@
     <BaseHamburger />
     <nav class="pure-menu">
       <BaseHeader />
+      <p>Print, save for later, or start new.</p>
       <ul class="pure-menu-list">
         <li class="pure-menu-item pure-menu-link" @click="previous">
           <img src="../assets/images/back.svg" alt="Previous" /> Previous

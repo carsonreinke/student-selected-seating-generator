@@ -3,6 +3,7 @@
     <BaseHamburger />
     <nav class="pure-menu">
       <BaseHeader />
+      <p>Provide the name of each student and their preferences.</p>
       <ul class="pure-menu-list">
         <li class="pure-menu-item pure-menu-link" @click="next">
           <img src="../assets/images/forward.svg" alt="Next" /> Next
@@ -17,7 +18,6 @@
     </nav>
     <main>
       <h2>Students</h2>
-      <p>TODO</p>
       <Student v-for="student in allStudents" :key="student.id" :student="student" />
     </main>
   </div>

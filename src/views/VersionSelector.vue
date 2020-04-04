@@ -3,6 +3,7 @@
     <BaseHamburger />
     <nav class="pure-menu">
       <BaseHeader />
+      <p>Let's get started!</p>
       <ul class="pure-menu-list">
         <li class="pure-menu-item pure-menu-link menu-new" @click="newVersion">
           <img src="../assets/images/add.svg" alt="New" /> New
@@ -20,7 +21,8 @@
     </nav>
     <main>
       <h2>Welcome</h2>
-      <p>TODO</p>
+      <p>This a simple tool to help arrange students in a class room based on their own preferences for each other.  Students will be automatically selected for a particular desk based on proximity of their preferences.</p>
+      <p>A note on <b>privacy</b>, this tool has no tracking/analytics and all data saved is on your local web browser.</p>
     </main>
   </div>
 </template>

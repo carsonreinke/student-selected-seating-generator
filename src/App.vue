@@ -59,10 +59,17 @@ nav ul li.pure-menu-item:hover > img {
   filter: invert(1);
 }
 
-nav h3 {
-  padding: 1em 1em;
+nav p {
+  padding: 1em;
   margin: 0;
+  border-bottom: 1px rgba(0, 0, 0, 0.1) solid;
+  font-size: 0.75em;
+  color: rgba(0, 0, 0, 0.5);
+}
 
+nav h3 {
+  padding: 1em;
+  margin: 0;
   font-size: 1em;
   font-weight: normal;
   border-top: 1px rgba(0, 0, 0, 0.1) solid;
