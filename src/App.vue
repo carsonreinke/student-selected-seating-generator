@@ -128,8 +128,8 @@ main {
   }
 
   main {
-    margin-top: 2em;
     margin-left: 0;
+    margin-top: 2em;
   }
 
   .expanded .hamburger {

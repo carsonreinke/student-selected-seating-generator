@@ -80,6 +80,13 @@ export default {
   margin-right: 30px;
 }
 
+@media (max-width: 768px) {
+  #room {
+    margin: 0;
+    width: 100%;
+  }
+}
+
 @media print {
   #room {
     margin: 0;

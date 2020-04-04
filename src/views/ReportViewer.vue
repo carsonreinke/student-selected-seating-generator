@@ -44,7 +44,9 @@ export default {
       window.print();
     },
     save() {
-      this.$store.dispatch("saveVersion");
+      this.$store.dispatch("saveVersion").then(() => {
+        window.alert("Room has been saved");
+      });
     },
     startOver() {
       this.$router.push("/");

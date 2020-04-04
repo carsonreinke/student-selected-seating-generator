@@ -1,7 +1,7 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "9021c7f96763eda6135e",
-    "url": "/student-selected-seating-generator/css/app.f4d9201c.css"
+    "revision": "3c1535b9055e1ae3cfa9",
+    "url": "/student-selected-seating-generator/css/app.0f579bba.css"
   },
   {
     "revision": "9d5cf0655ff73b96c6f8",
@@ -56,12 +56,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/student-selected-seating-generator/img/start-over.02eb0042.svg"
   },
   {
-    "revision": "4509859d7f9a618ced9362269b82455d",
+    "revision": "9c0267a9fd2edfcee92bd199654625a0",
     "url": "/student-selected-seating-generator/index.html"
   },
   {
-    "revision": "9021c7f96763eda6135e",
-    "url": "/student-selected-seating-generator/js/app.74110876.js"
+    "revision": "3c1535b9055e1ae3cfa9",
+    "url": "/student-selected-seating-generator/js/app.ed54bc33.js"
   },
   {
     "revision": "9d5cf0655ff73b96c6f8",

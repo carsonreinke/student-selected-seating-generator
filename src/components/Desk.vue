@@ -45,6 +45,17 @@ import { mapActions } from "vuex";
 
 const RADIANS_TO_DEGREES = 180.0 / Math.PI;
 
+/**
+ * Return the coordinates
+ */
+const eventCoordinates = (event, touchList = 'touches') => {
+  if (event[touchList]) {
+    return { x: event[touchList][0].clientX, y: event[touchList][0].clientY };
+  } else {
+    return { x: event.clientX, y: event.clientY };
+  }
+};
+
 export default {
   name: "desk",
   props: {
@@ -75,15 +86,24 @@ export default {
       return desk.student === null ? "Student" : desk.student.name;
     },
     onDragStart(event) {
-      this.initialPosition = { x: event.clientX, y: event.clientY };
+      this.initialPosition = eventCoordinates(event);
     },
     onDragEnd(event) {
       const { desk } = this;
       const element = event.target;
 
+      //Check if we have a starting position or not, if not, just exit
+      if(!this.initialPosition) {
+        return;
+      }
+
+      const clientCoordinates = eventCoordinates(event, 'changedTouches');
+      const clientX = clientCoordinates.x,
+        clientY = clientCoordinates.y;
+
       //Calculate new position
-      let x = event.clientX - this.initialPosition.x + element.offsetLeft,
-        y = event.clientY - this.initialPosition.y + element.offsetTop;
+      let x = clientX - this.initialPosition.x + element.offsetLeft,
+        y = clientY - this.initialPosition.y + element.offsetTop;
 
       //Ensure position not too far left/top
       if (x < 0) {
@@ -118,6 +138,10 @@ export default {
         element = event.target,
         rect = element.parentElement.parentElement.getBoundingClientRect();
 
+      const clientCoordinates = eventCoordinates(event);
+      const clientX = clientCoordinates.x,
+        clientY = clientCoordinates.y;
+
       event.preventDefault();
       event.stopPropagation();
 
@@ -136,8 +160,8 @@ export default {
         }
       };
 
-      const x = event.clientX - this.rotating.center.x,
-        y = event.clientY - this.rotating.center.y;
+      const x = clientX - this.rotating.center.x,
+        y = clientY - this.rotating.center.y;
       this.rotating.start = RADIANS_TO_DEGREES * Math.atan2(y, x);
 
       //Add listeners to entire document
@@ -176,15 +200,17 @@ export default {
       const { desk } = this;
       let d, x, y;
 
+      const clientCoordinates = eventCoordinates(event, 'changedTouches');
+      const clientX = clientCoordinates.x,
+        clientY = clientCoordinates.y;
+
       event.preventDefault();
       event.stopPropagation();
 
       if (this.rotating) {
-        event.preventDefault();
-
         //Apply latest rotation
-        (x = event.clientX - this.rotating.center.x),
-          (y = event.clientY - this.rotating.center.y),
+        (x = clientX - this.rotating.center.x),
+          (y = clientY - this.rotating.center.y),
           (d = RADIANS_TO_DEGREES * Math.atan2(y, x));
         this.rotating.rotation = d - this.rotating.start;
         this.rotateDesk({
@@ -221,6 +247,7 @@ export default {
 
 .desk * {
   pointer-events: none;
+  touch-action: none;
 }
 
 .desk[draggable="true"] {
@@ -254,6 +281,7 @@ export default {
 .delete-handle > img {
   display: none;
   pointer-events: auto;
+  touch-action: auto;
   cursor: pointer;
 }
 
@@ -276,6 +304,7 @@ export default {
 .desk .rotate-handle > img {
   display: none;
   pointer-events: auto;
+  touch-action: auto;
 }
 
 .desk:hover .rotate-handle > img,
@@ -294,11 +323,6 @@ export default {
 
   .container:hover {
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
-  }
-}
-
-@media print {
-  .desk {
   }
 }
 </style>
