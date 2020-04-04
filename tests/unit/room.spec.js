@@ -45,3 +45,21 @@ test('createdAtDate', () => {
   const room = new Room();
   expect(room.createdAtDate()).toBeInstanceOf(Date);
 });
+
+test('removeStudent', () => {
+  const room = new Room();
+  const student = room.addStudent();
+
+  expect(room.students).toContain(student);
+  room.removeStudent(student);
+  expect(room.students).not.toContain(student);
+});
+
+test('removeDesk', () => {
+  const room = new Room();
+  const desk = room.addDesk();
+
+  expect(room.desks).toContain(desk);
+  room.removeStudent(desk);
+  expect(room.desks).not.toContain(desk);
+});
