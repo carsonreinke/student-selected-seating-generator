@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/student-selected-seating-generator/precache-manifest.3c47a1a7fab36d699972d4eacf3b5c36.js"
+  "/student-selected-seating-generator/precache-manifest.a4b544e3c6c6fd6b695012b3518d3cd8.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "student-selected-seating-generator"});
