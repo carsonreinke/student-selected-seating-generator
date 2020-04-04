@@ -55,9 +55,9 @@ export default new Vuex.Store({
     },
     removeDesk: ({ commit }, desk) => {
       commit('REMOVE_DESK', desk);
-      
+
       //Also remove student if any
-      if(desk.student) {
+      if (desk.student) {
         commit('REMOVE_STUDENT', desk.student);
       }
     },
@@ -67,9 +67,9 @@ export default new Vuex.Store({
     addStudent: ({ commit }) => commit('ADD_STUDENT'),
     removeStudent: ({ commit }, student) => {
       commit('REMOVE_STUDENT', student);
-      
+
       //Also remove desk if any
-      if(student.desk) {
+      if (student.desk) {
         commit('REMOVE_DESK', student.desk);
       }
     },

@@ -21,5 +21,5 @@
 * Browser testing
 * ~~Add confirmation on save~~
 * ~~Add desk rotation~~
-* Figure out VSCode code formatting
+* ~~Figure out VSCode code formatting~~
 * ~~Fix touch events~~

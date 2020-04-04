@@ -2,16 +2,16 @@ import Strategy from '@/models/strategy';
 import Room from '@/models/room';
 
 test('distance', () => {
-    const room = new Room();
-    room.arrangementStrategy = new Strategy();
-    
-    const d1 = room.addDesk(),
-        d2 = room.addDesk();
-    d1.student = room.addStudent();
-    d2.student = room.addStudent();
+  const room = new Room();
+  room.arrangementStrategy = new Strategy();
 
-    expect(room.arrangementStrategy.distance(room, d1.student, d2.student)).toEqual(0);
+  const d1 = room.addDesk(),
+    d2 = room.addDesk();
+  d1.student = room.addStudent();
+  d2.student = room.addStudent();
 
-    d2.position.x = 10;
-    expect(room.arrangementStrategy.distance(room, d1.student, d2.student)).toEqual(10);
+  expect(room.arrangementStrategy.distance(room, d1.student, d2.student)).toEqual(0);
+
+  d2.position.x = 10;
+  expect(room.arrangementStrategy.distance(room, d1.student, d2.student)).toEqual(10);
 });

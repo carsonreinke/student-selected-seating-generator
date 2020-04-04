@@ -10,8 +10,8 @@ export default class Position extends Base {
 
     /**
      * Distance between two positions
-     * 
-     * @param number other 
+     *
+     * @param number other
      */
     distance(other) {
         return Math.sqrt(

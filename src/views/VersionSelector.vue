@@ -4,7 +4,9 @@
     <nav class="pure-menu">
       <BaseHeader />
       <ul class="pure-menu-list">
-        <li class="pure-menu-item pure-menu-link menu-new" @click="newVersion"><img src="../assets/images/add.svg" alt="New"> New</li>
+        <li class="pure-menu-item pure-menu-link menu-new" @click="newVersion">
+          <img src="../assets/images/add.svg" alt="New" /> New
+        </li>
       </ul>
       <h3>Saved</h3>
       <ul class="pure-menu-list menu-bottom">

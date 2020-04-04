@@ -48,7 +48,7 @@ const RADIANS_TO_DEGREES = 180.0 / Math.PI;
 /**
  * Return the coordinates
  */
-const eventCoordinates = (event, touchList = 'touches') => {
+const eventCoordinates = (event, touchList = "touches") => {
   if (event[touchList]) {
     return { x: event[touchList][0].clientX, y: event[touchList][0].clientY };
   } else {
@@ -93,11 +93,11 @@ export default {
       const element = event.target;
 
       //Check if we have a starting position or not, if not, just exit
-      if(!this.initialPosition) {
+      if (!this.initialPosition) {
         return;
       }
 
-      const clientCoordinates = eventCoordinates(event, 'changedTouches');
+      const clientCoordinates = eventCoordinates(event, "changedTouches");
       const clientX = clientCoordinates.x,
         clientY = clientCoordinates.y;
 
@@ -200,7 +200,7 @@ export default {
       const { desk } = this;
       let d, x, y;
 
-      const clientCoordinates = eventCoordinates(event, 'changedTouches');
+      const clientCoordinates = eventCoordinates(event, "changedTouches");
       const clientX = clientCoordinates.x,
         clientY = clientCoordinates.y;
 

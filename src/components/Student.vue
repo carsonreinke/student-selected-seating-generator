@@ -1,6 +1,8 @@
 <template>
   <div class="student">
-    <div class="name"><input type="text" :value="student.name" @input="onNameChange" placeholder="Student name" /></div>
+    <div class="name">
+      <input type="text" :value="student.name" @input="onNameChange" placeholder="Student name" />
+    </div>
     <multiselect
       :multiple="true"
       :value="preferences"

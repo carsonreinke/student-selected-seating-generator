@@ -1,12 +1,7 @@
 <template>
   <div id="room">
     <div class="name">
-    <h2
-      :contenteditable="isEditable"
-      v-text="name"
-      @blur="onBlur"
-      @keydown.enter="onKeyDown"
-    ></h2>
+      <h2 :contenteditable="isEditable" v-text="name" @blur="onBlur" @keydown.enter="onKeyDown"></h2>
     </div>
     <Desk v-for="desk in allDesks" :key="desk.id" :desk="desk" :editable="isEditable" />
   </div>
@@ -62,7 +57,7 @@ export default {
 }
 
 #room div.name h2[contenteditable="true"] {
-  background-image: url('../assets/images/edit.svg');
+  background-image: url("../assets/images/edit.svg");
   background-repeat: no-repeat;
   background-position-x: right;
   background-position-y: center;
