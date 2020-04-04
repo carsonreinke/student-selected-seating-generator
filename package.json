@@ -7,7 +7,7 @@
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
-    "deploy": "npm run build && git subtree push --prefix dist origin gh-pages"
+    "deploy": "npm run build && git commit -m 'Fresh build' && git push origin && git subtree push --prefix dist origin gh-pages"
   },
   "dependencies": {
     "core-js": "^3.4.4",
