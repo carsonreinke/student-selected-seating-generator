@@ -20,9 +20,28 @@
       </ul>
     </nav>
     <main>
+      <div class="ribbon">
+        <a href="https://github.com/carsonreinke/student-selected-seating-generator">
+          <img
+            width="149"
+            height="149"
+            src="https://github.blog/wp-content/uploads/2008/12/forkme_right_gray_6d6d6d.png?resize=149%2C149"
+            alt="Fork me on GitHub"
+          />
+        </a>
+      </div>
+
       <h2>Welcome</h2>
-      <p>This a simple tool to help arrange students in a class room based on their own preferences for each other.  Students will be automatically selected for a particular desk based on proximity of their preferences.</p>
-      <p>A note on <b>privacy</b>, this tool has no tracking/analytics and all data saved is on your local web browser.</p>
+      <p>This a simple tool to help arrange students in a class room based on their own preferences for each other. Students will be automatically selected for a particular desk based on proximity of their preferences.</p>
+      <p>
+        A note on
+        <b>privacy</b>, this tool has no tracking/analytics and all data saved is on your local web browser.
+      </p>
+
+      <p class="bottom">
+        Built by
+        <a href="https://reinke.co/">Carson Reinke</a>
+      </p>
     </main>
   </div>
 </template>
@@ -53,3 +72,23 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.ribbon {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+p.bottom {
+  position: absolute;
+  bottom: 0;
+}
+
+@media (max-width: 768px) {
+  p.bottom {
+    position: relative;
+    bottom: auto;
+  }
+}
+</style>
