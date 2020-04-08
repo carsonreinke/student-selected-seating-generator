@@ -4,12 +4,28 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/CNAME"
   },
   {
-    "revision": "d9dfce7461c87a278625",
-    "url": "/css/app.97482c2f.css"
+    "revision": "8ea0559191291449f855",
+    "url": "/css/app.3b58fd4a.css"
   },
   {
     "revision": "9d5cf0655ff73b96c6f8",
     "url": "/css/chunk-vendors.2a88d96b.css"
+  },
+  {
+    "revision": "08ee3f93b2e64c351c0ed71ab99b0dee",
+    "url": "/fonts/capriola-v7-latin-regular.08ee3f93.woff"
+  },
+  {
+    "revision": "120f402c5ed22f4c72df1be95be8cc03",
+    "url": "/fonts/capriola-v7-latin-regular.120f402c.ttf"
+  },
+  {
+    "revision": "314c3adc8d7dc5b038e178a29d51435b",
+    "url": "/fonts/capriola-v7-latin-regular.314c3adc.eot"
+  },
+  {
+    "revision": "b9480f76677c4e36f14c5829fdb5e620",
+    "url": "/fonts/capriola-v7-latin-regular.b9480f76.woff2"
   },
   {
     "revision": "dfcc83ae7bf1061884fe07c2d30efde6",
@@ -22,6 +38,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "009be469e007eb49cd95248e8b5ce9d2",
     "url": "/img/back.009be469.svg"
+  },
+  {
+    "revision": "2f6670b9422a1a4f41c2c06f48af2c08",
+    "url": "/img/capriola-v7-latin-regular.2f6670b9.svg"
   },
   {
     "revision": "e7403043f0aed4f12ca52af62bd2e745",
@@ -60,12 +80,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/img/start-over.0e232086.svg"
   },
   {
-    "revision": "f57c6ee9131878df9bf7959b62611be9",
+    "revision": "49c4a4fb44fba76421556b0215f91dd8",
     "url": "/index.html"
   },
   {
-    "revision": "d9dfce7461c87a278625",
-    "url": "/js/app.c690871e.js"
+    "revision": "8ea0559191291449f855",
+    "url": "/js/app.12fad25e.js"
   },
   {
     "revision": "9d5cf0655ff73b96c6f8",
