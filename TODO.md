@@ -1,7 +1,7 @@
 # TODOs
 
 * ~~Google Font via Webpack~~
-* Update README
+* ~~Update README~~
 * Fix issues with arrangement
 * ~~Add edit button for room~~
 * ~~Style desk~~

@@ -32,7 +32,7 @@
       </div>
 
       <h2>Welcome</h2>
-      <p>This a simple tool to help arrange students in a class room based on their own preferences for each other. Students will be automatically selected for a particular desk based on proximity of their preferences.</p>
+      <p>This a simple tool to help teachers arrange students in a classroom based on their own preferences for each other. Students will be automatically selected for a particular desk based on proximity of their preferences.</p>
       <p>
         A note on
         <b>privacy</b>, this tool has no tracking/analytics and all data saved is on your local web browser.
