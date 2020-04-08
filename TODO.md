@@ -1,7 +1,6 @@
 # TODOs
 
-* Google Font via Webpack
-* FontAwesome via Webpack
+* ~~Google Font via Webpack~~
 * Update README
 * Fix issues with arrangement
 * ~~Add edit button for room~~
@@ -15,8 +14,8 @@
 * Add confirmation when starting over
 * ~~Add start over on student editor~~
 * ~~Style drop downs for student editor~~
-* Add introduction description
-* Add privacy policy
+* ~~Add introduction description~~
+* ~~Add privacy policy~~
 * Add e2e tests
 * Browser testing
 * ~~Add confirmation on save~~

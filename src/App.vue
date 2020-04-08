@@ -9,7 +9,19 @@ require("purecss");
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Capriola&display=swap");
+@font-face {
+  font-family: 'Capriola';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./assets/fonts/capriola-v7-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Capriola Regular'), local('Capriola-Regular'),
+       url('./assets/fonts/capriola-v7-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('./assets/fonts/capriola-v7-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('./assets/fonts/capriola-v7-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('./assets/fonts/capriola-v7-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('./assets/fonts/capriola-v7-latin-regular.svg#Capriola') format('svg'); /* Legacy iOS */
+}
 
 html {
   font-family: "Capriola", sans-serif;
