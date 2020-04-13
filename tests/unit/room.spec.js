@@ -60,6 +60,6 @@ test('removeDesk', () => {
   const desk = room.addDesk();
 
   expect(room.desks).toContain(desk);
-  room.removeStudent(desk);
+  room.removeDesk(desk);
   expect(room.desks).not.toContain(desk);
 });
