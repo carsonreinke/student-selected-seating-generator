@@ -51,6 +51,7 @@ export default {
         deskRect = document
           .getElementsByClassName("desk")[0]
           .getBoundingClientRect();
+      let deskCount = this.$store.getters.deskCount;
       if (!containerRect || containerRect.height == 0) {
         containerRect = { width: 1280, height: 960 };
       }
@@ -61,7 +62,7 @@ export default {
       //Calculate number of columns/rows
       const maxColumns = Math.floor(containerRect.width / deskRect.width),
         maxRows = Math.floor(containerRect.height / deskRect.height);
-      if (maxColumns * maxRows < this.$store.getters.deskCount) {
+      if (maxColumns * maxRows < deskCount) {
         throw new Error("Too many desks to arrange");
       }
 
