@@ -112,7 +112,6 @@ export default new Vuex.Store({
           let room;
           try {
             room = loadRoomFromStorage(version);
-console.log(room);
           }
           catch (e) {
             console.error(e);

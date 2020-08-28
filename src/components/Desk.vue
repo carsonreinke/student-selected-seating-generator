@@ -1,12 +1,9 @@
 <template>
   <div
-    :class="{'desk': true, 'active': isDragging}"
-    :draggable="isEditable"
+    :class="{'desk': true, 'active': isDragging, 'editable': isEditable}"
     :style="{ left: desk.position.x + 'px', top: desk.position.y + 'px', transform: 'rotate(' +  desk.position.angle + 'deg)' }"
-    @dragstart="onDragStart"
-    @dragend="onDragEnd"
+    @mousedown="onDragStart"
     @touchstart="onDragStart"
-    @touchend="onDragEnd"
   >
     <div class="icon">
       <img alt src="../assets/images/desk.svg" />
@@ -60,7 +57,7 @@ export default {
   name: "desk",
   props: {
     desk: Object,
-    editable: Boolean
+    editable: Boolean,
   },
   computed: {
     isEditable() {
@@ -70,13 +67,13 @@ export default {
       return this.rotating !== null;
     },
     isDragging() {
-      return this.initialPosition !== null;
-    }
+      return this.dragging !== null;
+    },
   },
   data: () => {
     return {
-      initialPosition: {},
-      rotating: null
+      dragging: null,
+      rotating: null,
     };
   },
   methods: {
@@ -86,24 +83,43 @@ export default {
       return desk.student === null ? "Student" : desk.student.name;
     },
     onDragStart(event) {
-      this.initialPosition = eventCoordinates(event);
-    },
-    onDragEnd(event) {
-      const { desk } = this;
       const element = event.target;
 
+      this.dragging = {
+        x: element.offsetLeft,
+        y: element.offsetTop,
+        client: eventCoordinates(event),
+        events: {
+          move: this.onDrag.bind(this),
+          up: this.onDragEnd.bind(this),
+        },
+        parentRect: element.parentElement?.getBoundingClientRect(),
+        elementRect: element.getBoundingClientRect(),
+      };
+
+      //Add listeners to entire document
+      document.body.addEventListener("mousemove", this.dragging.events.move);
+      document.body.addEventListener("mouseup", this.dragging.events.up);
+      document.body.addEventListener("touchmove", this.dragging.events.move);
+      document.body.addEventListener("touchend", this.dragging.events.up);
+    },
+    onDrag(event) {
+      this.onDragEnd(event, false);
+    },
+    onDragEnd(event, final = true) {
+      const { desk } = this;
+
       //Check if we have a starting position or not, if not, just exit
-      if (!this.initialPosition) {
+      if (!this.dragging) {
         return;
       }
 
       const clientCoordinates = eventCoordinates(event, "changedTouches");
-      const clientX = clientCoordinates.x,
-        clientY = clientCoordinates.y;
+      const _dragging = Object.assign({}, this.dragging);
 
       //Calculate new position
-      let x = clientX - this.initialPosition.x + element.offsetLeft,
-        y = clientY - this.initialPosition.y + element.offsetTop;
+      let x = clientCoordinates.x - this.dragging.client.x + this.dragging.x,
+        y = clientCoordinates.y - this.dragging.client.y + this.dragging.y;
 
       //Ensure position not too far left/top
       if (x < 0) {
@@ -114,23 +130,39 @@ export default {
       }
 
       //Ensure position not too far bottom/right
-      const parentElement = element.parentElement;
-      if (parentElement) {
-        const parentRect = parentElement.getBoundingClientRect(),
-          elementRect = element.getBoundingClientRect();
-
-        if (x > parentRect.width - elementRect.width) {
-          x = parentRect.width - elementRect.width;
+      if (this.dragging.parentRect) {
+        if (x > this.dragging.parentRect.width - this.dragging.elementRect.width) {
+          x = this.dragging.parentRect.width - this.dragging.elementRect.width;
         }
-        if (y > parentRect.height - elementRect.height) {
-          y = parentRect.height - elementRect.height;
+        if (y > this.dragging.parentRect.height - this.dragging.elementRect.height) {
+          y = this.dragging.parentRect.height - this.dragging.elementRect.height;
         }
       }
 
       this.moveDesk({ desk, x, y });
 
-      //Reset object
-      this.initialPosition = null;
+      if (final) {
+        //Remove listeners
+        document.body.removeEventListener(
+          "mousemove",
+          this.dragging.events.move
+        );
+        document.body.removeEventListener("mouseup", this.dragging.events.up);
+        document.body.removeEventListener(
+          "touchmove",
+          this.dragging.events.move
+        );
+        document.body.removeEventListener("touchend", this.dragging.events.up);
+
+        //Reset object
+        this.dragging = null;
+      } else {
+        //Apply latest position
+        _dragging.client = clientCoordinates;
+        _dragging.x = x;
+        _dragging.y = y;
+        this.dragging = _dragging;
+      }
     },
     onRotateStart(event) {
       //Concept copied from https://bl.ocks.org/joyrexus/7207044
@@ -152,12 +184,12 @@ export default {
         start: 0.0,
         events: {
           move: this.onRotate.bind(this),
-          up: this.onRotateEnd.bind(this)
+          up: this.onRotateEnd.bind(this),
         },
         center: {
           x: rect.left + rect.width / 2,
-          y: rect.top + rect.height / 2
-        }
+          y: rect.top + rect.height / 2,
+        },
       };
 
       const x = clientX - this.rotating.center.x,
@@ -177,7 +209,7 @@ export default {
         //Finish rotating
         this.rotateDesk({
           desk,
-          angle: this.rotating.angle + this.rotating.rotation
+          angle: this.rotating.angle + this.rotating.rotation,
         });
 
         //Remove listeners
@@ -215,11 +247,11 @@ export default {
         this.rotating.rotation = d - this.rotating.start;
         this.rotateDesk({
           desk,
-          angle: this.rotating.angle + this.rotating.rotation
+          angle: this.rotating.angle + this.rotating.rotation,
         });
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -250,11 +282,15 @@ export default {
   touch-action: none;
 }
 
-.desk[draggable="true"] {
+.editable {
+  user-select: none;
+}
+
+.desk.editable {
   cursor: grab;
 }
 
-.desk[draggable="true"].active {
+.desk.editable.active {
   cursor: grabbing;
 }
 
