@@ -40,7 +40,7 @@ export default {
   components: {
     Room,
     BaseHamburger,
-    BaseHeader
+    BaseHeader,
   },
   methods: {
     ...mapActions(["addDesk", "initialDesks"]),
@@ -64,22 +64,17 @@ export default {
       if (maxColumns * maxRows < this.$store.getters.deskCount) {
         throw new Error("Too many desks to arrange");
       }
-      //Change columns/rows to match the number of items
-      const columns = Math.floor(
-        (maxColumns / (maxColumns + maxRows)) * this.$store.getters.deskCount
-      );
-      const rows = Math.ceil(
-        (maxRows / (maxColumns + maxRows)) * this.$store.getters.deskCount
-      );
 
-      /*let columns = 1, rows = 1;
-      while(columns * rows < this.$store.getters.deskCount) {
-        columns++;
-        rows++;
-      }*/
-
-      //const columns = maxColumns,
-      //  rows = Math.ceil(this.$store.getters.deskCount / maxColumns);
+      // Change columns/rows to match the number of items
+      let columns = 1,
+        rows = 1;
+      while (columns * rows < deskCount) {
+        if (columns < rows && (columns < maxColumns || rows >= maxRows)) {
+          columns++;
+        } else {
+          rows++;
+        }
+      }
 
       //Calculate column/row size and center position
       const width = containerRect.width / columns,
@@ -95,7 +90,7 @@ export default {
         this.$store.dispatch("moveDesk", {
           desk,
           x: column * width + left,
-          y: row * height + top
+          y: row * height + top,
         });
       });
     },
@@ -104,10 +99,10 @@ export default {
     },
     startOver() {
       this.$router.push("/");
-    }
+    },
   },
   beforeRouteEnter(to, from, next) {
-    next(vm => {
+    next((vm) => {
       if (vm.$store.getters.isEmpty) {
         vm.$router.push("/");
         return;
@@ -119,6 +114,6 @@ export default {
         vm.$store.dispatch("newVersion", false);
       }
     });
-  }
+  },
 };
 </script>
