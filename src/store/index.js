@@ -116,7 +116,10 @@ export default new Vuex.Store({
           catch (e) {
             console.error(e);
           }
-          commit('ADD_VERSION', room);
+
+          if(room) {
+            commit('ADD_VERSION', room);
+          }
         });
     },
     loadVersion: ({ commit }, version) => {
