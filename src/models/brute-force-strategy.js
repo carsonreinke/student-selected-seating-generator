@@ -1,9 +1,17 @@
 import Strategy from './strategy';
-//import Combinatorics from 'js-combinatorics';
 
 export default class BruteForceStrategy extends Strategy {
   constructor() {
     super();
+  }
+
+  /**
+   * Name of class
+   *
+   * @returns string
+   */
+  static className() {
+    return 'BruteForceStrategy';
   }
 
   /**

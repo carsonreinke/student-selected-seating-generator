@@ -12,6 +12,15 @@ export default class Base {
   }
 
   /**
+   * Name of class
+   *
+   * @returns string
+   */
+  static className() {
+    return 'Base';
+  }
+
+  /**
    * Converts object(s) into a format capable of persistence
    *
    * @param Object refs
@@ -19,7 +28,7 @@ export default class Base {
    */
   marshal(refs) {
     const object = {
-      [PROP_CLASS]: this.constructor.name,
+      [PROP_CLASS]: this.constructor.className(),
     };
     //Immediately add current object for short-circuit
     refs[this.id] = object;

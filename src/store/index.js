@@ -6,8 +6,6 @@ import { unmarshal } from '@/models';
 
 Vue.use(Vuex);
 
-//const debug = process.env.NODE_ENV !== 'production'
-
 const VERSION_PREFIX = 'sssg-';
 const VERSION_REFS = '-refs';
 const INITIAL_DESKS = 6;
@@ -113,7 +111,8 @@ export default new Vuex.Store({
         .forEach((version) => {
           let room;
           try {
-            room = loadRoomFromStorage(version)
+            room = loadRoomFromStorage(version);
+console.log(room);
           }
           catch (e) {
             console.error(e);

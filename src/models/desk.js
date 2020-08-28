@@ -9,6 +9,15 @@ export default class Desk extends Base {
   }
 
   /**
+   * Name of class
+   *
+   * @returns string
+   */
+  static className() {
+    return 'Desk';
+  }
+
+  /**
    * Move a desk to a different location
    *
    * @param int x

@@ -13,6 +13,15 @@ export default class Room extends Base {
   }
 
   /**
+   * Name of class
+   *
+   * @returns string
+   */
+  static className() {
+    return 'Room';
+  }
+
+  /**
    * @returns Desk
    */
   addDesk() {

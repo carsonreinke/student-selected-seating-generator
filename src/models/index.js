@@ -7,7 +7,7 @@ import Desk from '@/models/desk';
 import Student from '@/models/student';
 import Room from '@/models/room';
 
-const classes = [Base, Strategy, BruteForceStrategy, RandomStrategy, Position, Desk, Student, Room];
+const classes = [Strategy, BruteForceStrategy, RandomStrategy, Position, Desk, Student, Room];
 
 export function addClass(klass) {
   classes.push(klass);
@@ -19,7 +19,7 @@ export function addClass(klass) {
  * @param Object refs
  */
 const unmarshal = (object, refs) => {
-  const klass = classes.find(kls => kls.name == object.__class__);
+  const klass = classes.find(kls => kls.className() == object.__class__);
   if (!klass) {
     throw new Error(`Cannot find class "${object.__class__}"`);
   }

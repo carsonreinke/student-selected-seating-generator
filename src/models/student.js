@@ -8,6 +8,15 @@ export default class Student extends Base {
   }
 
   /**
+   * Name of class
+   *
+   * @returns string
+   */
+  static className() {
+    return 'Student';
+  }
+
+  /**
    * Add a preferred student
    *
    * @param Student student

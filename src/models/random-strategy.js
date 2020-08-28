@@ -6,6 +6,15 @@ export default class RandomStrategy extends Strategy {
   }
 
   /**
+   * Name of class
+   *
+   * @returns string
+   */
+  static className() {
+    return 'RandomStrategy';
+  }
+
+  /**
    *
    * @param Room room
    */

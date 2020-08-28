@@ -6,6 +6,15 @@ export default class Strategy extends Base {
   }
 
   /**
+   * Name of class
+   *
+   * @returns string
+   */
+  static className() {
+    return 'Strategy';
+  }
+
+  /**
    * Arrange a room
    *
    * @param Room room

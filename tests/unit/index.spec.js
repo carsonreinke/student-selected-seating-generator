@@ -1,7 +1,11 @@
 import Base from '@/models/base';
 import * as Models from '@/models';
 
-class Mock extends Base { }
+class Mock extends Base {
+  static className() {
+    return 'Mock';
+  }
+}
 Models.addClass(Mock);
 
 class Related extends Base {
@@ -9,6 +13,10 @@ class Related extends Base {
     super();
     this.related = null;
     this.property = null;
+  }
+
+  static className() {
+    return 'Related';
   }
 }
 Models.addClass(Related);

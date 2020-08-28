@@ -1,12 +1,20 @@
 import Base from '@/models/base';
 
-class Mock extends Base { }
+class Mock extends Base {
+  static className() {
+    return 'Mock';
+  }
+}
 
 class Related extends Base {
   constructor() {
     super();
     this.related = null;
     this.property = null;
+  }
+
+  static className() {
+    return 'Related';
   }
 }
 
